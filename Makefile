@@ -12,7 +12,7 @@ OBJS    = $(SRCS:.c=.o)
 
 
 $(NAME): $(OBJS)
-# $(CC) $(CFLAGS) $(OBJS) $(LINKS) -o $(NAME)
+ $(CC) $(CFLAGS) $(OBJS) $(LINKS) -o $(NAME)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 all: $(NAME)
