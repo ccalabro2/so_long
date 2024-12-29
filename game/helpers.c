@@ -27,9 +27,13 @@ void    ft_exit(t_game *game, int flag)
 {
     if (flag > 0)
         ft_free_matrix(game);
-    if (flag > 1)
-        free(game->info);
     if (game->map)
         free(game->map);
+    if (game->mlx_ptr && game->mlx_win)
+    {
+        mlx_destroy_window(game->mlx_ptr, game->mlx_win);
+        free(game->mlx_ptr);
+        free(game->mlx_win);
+    }
     free(game);
 }

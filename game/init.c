@@ -6,6 +6,7 @@ int init_map(t_game *game)
 	int		fd;
 	int		i;
 
+	
 	game->map = malloc(sizeof(t_map));
 	game->map->height = 0;
 	fd = open(game->file_path, O_RDONLY);
@@ -41,14 +42,17 @@ int init_map(t_game *game)
 	return (1);
 }
 
-int init_info(t_game *game)
+int init_game(t_game *game)
 {
-	game->info = malloc(sizeof(t_info));
-	if (!game->info)
-		return (0);
-	game->info->c_player = 0;
-	game->info->c_coin = 0;
-	game->info->c_exit = 0;
+	game->c_player = 0;
+	game->c_coin = 0;
+	game->c_exit = 0;
+	game->wall = NULL;
+	game->floor = NULL;
+	game->coin = NULL;
+	game->player = NULL;
+	game->exit = NULL;
+
 	return (1);
 }
 

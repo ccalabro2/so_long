@@ -3,18 +3,17 @@ NAME	= so_long
 CC      = gcc
 
 CFLAGS  = -Wall -Wextra -Werror -g
-LINKS	= -Lmlx -lmlx -framework OpenGL -framework AppKit
+LINKS = -Lmlx -lmlx -lGL -lX11 -lXext 
 
 SRCS	= $(wildcard game/*.c) $(wildcard utils/*.c) main.c
-LIB	= mlx/
+LIB	=	mlx/
 
 OBJS    = $(SRCS:.c=.o)
 
-
 $(NAME): $(OBJS)
- $(CC) $(CFLAGS) $(OBJS) $(LINKS) -o $(NAME)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-
+	make -C $(LIB)
+	$(CC) $(CFLAGS) $(OBJS) $(LINKS) -o $(NAME)
+	
 all: $(NAME)
 	make -C $(LIB)
 
