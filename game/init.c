@@ -2,45 +2,41 @@
 
 int init_map(t_game *game)
 {
-	char	*line;
-	int		fd;
-	int		i;
+    char    *line;
+    int     fd;
+    int     i;
 
-	
-	game->map = malloc(sizeof(t_map));
-	game->map->height = 0;
-	fd = open(game->file_path, O_RDONLY);
-	if (fd < 0)
-		return (0);
-	line = get_next_line(fd);
-	while (line)
-	{
-		game->map->height++;
-		free(line);
-		line = get_next_line(fd);
-	}
-	free(line);
-	close(fd);
-	fd = open(game->file_path, O_RDONLY);
-	if (fd < 0)
-		return (0);
-	game->map->maps = malloc(game->map->height * sizeof(char **) + 1);
-	if (!game->map->maps)
-		return (0);
-	line = get_next_line(fd);
-	i = 0;
-	while (line)
-	{
-		game->map->maps[i++] = ft_strdup(line);
-		free(line);
-		line = get_next_line(fd);
-	}
-	game->map->maps[i] = NULL;
-	game->map->width = ft_strlen(game->map->maps[0]) - 1;
-	free(line);
-	close(fd);
-	return (1);
+    i = 0;
+    game->map = malloc(sizeof(t_map));
+    if (!game->map)
+        return (0);
+    game->map->height = 0;
+    fd = open(game->file_path, O_RDONLY);
+    if (fd < 0)
+        return (0);
+    line = get_next_line(fd);
+    if (!line)
+        return (0);
+    game->map->width = ft_strlen(line) - 1;
+    game->map->maps = malloc(sizeof(char *) * (game->map->width + 2)); 
+    if (!game->map->maps)
+    {
+        free(game->map);
+        return (0);
+    }
+    while (line)
+    {
+        game->map->maps[i] = ft_strdup(line);
+        free(line);
+        i++;
+        line = get_next_line(fd);
+    }
+    game->map->height = i;
+    game->map->maps[i] = NULL; 
+    close(fd);
+    return (1);
 }
+
 
 int init_game(t_game *game)
 {
@@ -52,6 +48,8 @@ int init_game(t_game *game)
 	game->coin = NULL;
 	game->player = NULL;
 	game->exit = NULL;
+
+    ft_printf("Benvenuto al Reparto Ortofrutticolo!\n");
 
 	return (1);
 }

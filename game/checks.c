@@ -3,7 +3,6 @@
 
 int	check_dim(t_game *game)
 {
-	ft_printf("check dimension\n");
 	int	len;
 	int	i;
 
@@ -22,7 +21,6 @@ int	check_dim(t_game *game)
 
 int	check_border(t_game *game)
 {
-	ft_printf("check b\n");
 	int i;
 
 	i = -1;
@@ -48,14 +46,11 @@ int	check_border(t_game *game)
 
 int check_info(t_game *game)
 {
-	ft_printf("checkinfooo\n");
 	int	i;
 	int	j;
 
 	if (!init_game(game))
 		return (0);
-
-	ft_printf("Height della mappa: %d\n", game->map->height);
 
 	i = -1;
 	while (++i < game->map->height)
@@ -78,8 +73,6 @@ int check_info(t_game *game)
 
 void	check_map(t_game *game)
 {
-	if(!init_map(game) || !check_dim(game) || !check_border(game) || !check_path(game))
-		ft_exit(game, 1);
-	if (!check_info(game))
-		ft_exit(game, 2);
+	if(!init_map(game) || !check_dim(game) || !check_border(game) || !check_path(game) || !check_info(game))
+		ft_exit(game);
 }

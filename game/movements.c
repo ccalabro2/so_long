@@ -9,12 +9,15 @@ void	move_player(t_game *game, int new_x, int new_y)
 		if (game->map->maps[new_y][new_x] == 'E' && game->c_coin == 0)
 		{	
 			ft_printf("YOU WON!\n");
-			ft_exit(game, 0);
+			ft_exit(game);
 		}
 		game->map->maps[game->y][game->x] = '0';
 		game->x = new_x;
 		game->y = new_y;
 		game->map->maps[new_y][new_x] = 'P';
+
+		game->steps++;
+        ft_printf("Passettini: %d\n", game->steps); 
 	}
 }
 

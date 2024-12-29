@@ -27,13 +27,14 @@ typedef struct s_game {
     int	    c_coin;
     int	    c_player;
     int	    c_exit;
+    int     steps;
 } t_game;
 
 int		init_game(t_game *game);
 int 	init_map(t_game *game);
 int		check_path(t_game *game);
 void	check_map(t_game *game);
-void	ft_exit(t_game *game, int flag);
+void	ft_exit(t_game *game);
 int		key_hook(int keycode, t_game *game);
 int		exit_hook(t_game *game);
 void	set_images(t_game *game);

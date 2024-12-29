@@ -4,11 +4,14 @@
 
 void	set_images(t_game *game)
 {
-	game->wall = mlx_xpm_file_to_image(game->mlx_ptr, "./sprites/wall.xpm", &game->map->width, &game->map->height);
-    game->floor = mlx_xpm_file_to_image(game->mlx_ptr, "./sprites/floor.xpm", &game->map->width, &game->map->height);
-    game->player = mlx_xpm_file_to_image(game->mlx_ptr, "./sprites/melanzana1.xpm", &game->map->width, &game->map->height);
-    game->coin = mlx_xpm_file_to_image(game->mlx_ptr, "./sprites/carotina.xpm", &game->map->width, &game->map->height);
-    game->exit = mlx_xpm_file_to_image(game->mlx_ptr, "./sprites/exit.xpm", &game->map->width, &game->map->height);
+	int	width;
+	int	height;
+
+	game->wall = mlx_xpm_file_to_image(game->mlx_ptr, "./sprites/wall.xpm", &width, &height);
+    game->floor = mlx_xpm_file_to_image(game->mlx_ptr, "./sprites/floor.xpm", &width, &height);
+    game->player = mlx_xpm_file_to_image(game->mlx_ptr, "./sprites/melanzana1.xpm", &width, &height);
+    game->coin = mlx_xpm_file_to_image(game->mlx_ptr, "./sprites/carotina.xpm", &width, &height);
+    game->exit = mlx_xpm_file_to_image(game->mlx_ptr, "./sprites/exit.xpm", &width, &height);
 }
 
 void	render_tile(t_game *game, int x, int y, char tile)
@@ -23,12 +26,10 @@ void	render_tile(t_game *game, int x, int y, char tile)
 		mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->coin, x, y);
 	else if (tile == 'E')
 		mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->exit, x, y);
-
 }
 
 void	render_map(t_game *game)
 {
-	ft_printf("render map!\n");
 	int	x;
 	int	y;
 
@@ -38,10 +39,9 @@ void	render_map(t_game *game)
 		x = 0;
 		while (x < game->map->width)
 		{
-			render_tile(game, x * 64, y * 64, game->map->maps[y][x]);
+			render_tile(game, x * 80, y * 80, game->map->maps[y][x]);
 			x++;
 		}
 		y++;
 	}
-	ft_printf("fine render map\n");
 }

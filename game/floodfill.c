@@ -69,14 +69,6 @@ void flood_fill(t_game *game, int y, int x)
     flood_fill(game, y, x + 1);  // destra
 }
 
-void	print_mapcopy(t_game *game)
-{
-	for (int y = 0; y < game->map->height; y++)
-		ft_printf("%s\n", game->mapcopy[y]);
-	ft_printf("\n");
-}
-
-
 // controllo che le C e le E siano raggiungibili
 int	path_finder(t_game *game)
 {
@@ -85,7 +77,6 @@ int	path_finder(t_game *game)
 
 	y = 0;
 
-    print_mapcopy(game);
 	while (y < game->map->height)
 	{
 		x = 0;
