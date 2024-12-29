@@ -5,20 +5,21 @@ CC      = gcc
 CFLAGS  = -Wall -Wextra -Werror -g
 LINKS	= -Lmlx -lmlx -framework OpenGL -framework AppKit
 
-SRCS	= $(wildcard game/*.c) $(wildcard utils/*.c)
-LIB	= minilibx-linux/
+SRCS	= $(wildcard game/*.c) $(wildcard utils/*.c) main.c
+LIB	= mlx/
 
-OBJS    = $(SRCS:.c=.o) 
+OBJS    = $(SRCS:.c=.o)
 
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LINKS) -o $(NAME)
-		   
+# $(CC) $(CFLAGS) $(OBJS) $(LINKS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
 all: $(NAME)
 	make -C $(LIB)
-	   
+
 RM      = rm -f
-	   
+
 clean:
 	$(RM) $(OBJS)
 
