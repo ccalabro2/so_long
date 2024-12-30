@@ -52,21 +52,26 @@ void	init_mapcopy(t_game *game)
 
 void flood_fill(t_game *game, int y, int x)
 {
-    // controlla che la cella non sia fuori dai limiti e che non sia una parete ('1') o già visitata ('#')
-    if (y < 0 || y >= game->map->height || x < 0 || x >= game->map->width
-        || game->mapcopy[y][x] == '1' || game->mapcopy[y][x] == '#')
+    if (y < 0 || y >= game->map->height || x < 0 || x >= game->map->width)
+        return ;
+
+    if (game->mapcopy[y][x] == '1' || game->mapcopy[y][x] == '#')
+        return ;
+
+    game->mapcopy[y][x] = '#';
+    flood_fill(game, y - 1, x); 
+    flood_fill(game, y, x - 1); 
+    flood_fill(game, y + 1, x);  
+    flood_fill(game, y, x + 1);  
+}
+void print_mapcopy(t_game *game)
+{
+    int y = 0;
+    while (y < game->map->height)
     {
-        return;
+        ft_printf("%s\n", game->mapcopy[y]);
+        y++;
     }
-
-    // segna la cella come visitata
-    game->mapcopy[y][x] = '#';  
-
-    // esplora celle adiacenti
-    flood_fill(game, y - 1, x);  // su
-    flood_fill(game, y, x - 1);  // sinistra
-    flood_fill(game, y + 1, x);  // giù
-    flood_fill(game, y, x + 1);  // destra
 }
 
 // controllo che le C e le E siano raggiungibili

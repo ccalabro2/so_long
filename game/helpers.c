@@ -1,43 +1,35 @@
 #include "../so_long.h"
 
-void ft_free_matrix(t_game *game)
+void	free_matrix(char **matrix, int height)
 {
-    int i;
+	int	i;
 
-    i = -1;
-    if (game->map && game->map->maps)
-    {
-        while (++i < game->map->height)
-        {
-            free(game->map->maps[i]);
-            game->map->maps[i] = NULL;
-        }
-        free(game->map->maps);
-        game->map->maps = NULL;
-    }
-    i = -1;
-    if (game->mapcopy)
-    {
-        while (++i < game->map->height)
-        {
-            free(game->mapcopy[i]);
-            game->mapcopy[i] = NULL;  
-        }
-        free(game->mapcopy);
-        game->mapcopy = NULL; 
-    }
+	if (!matrix)
+		return;
+	i = 0;
+	while (i < height)
+	{
+		if (matrix[i])
+			free(matrix[i]);
+		i++;
+	}
+	free(matrix);
 }
+
 
 void ft_exit(t_game *game)
 {
-    ft_free_matrix(game);
+    if (game->mlx_ptr && game->mlx_win)
+        mlx_destroy_window(game->mlx_ptr, game->mlx_win);
     if (game->map)
     {
+        if (game->map->maps)
+            free_matrix(game->map->maps, game->map->height);
         free(game->map);
-        game->map = NULL;
     }
-    if (game->mlx_ptr && game->mlx_win)
-        mlx_destroy_window(game->mlx_ptr, game->mlx_win);  
-    free(game);  
-    game = NULL;  
+	if (game->mapcopy)
+		free_matrix(game->mapcopy, game->map->height - 1);
+    free(game);
+	exit(0);
+
 }

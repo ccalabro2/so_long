@@ -32,7 +32,7 @@ void	render_map(t_game *game)
 {
 	int	x;
 	int	y;
-
+	
 	y = 0;
 	while (y < game->map->height)
 	{
