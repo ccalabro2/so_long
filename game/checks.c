@@ -1,5 +1,16 @@
-#include "../so_long.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checks.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/30 16:47:03 by ccalabro          #+#    #+#             */
+/*   Updated: 2024/12/30 16:54:52 by ccalabro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../so_long.h"
 
 int	check_dim(t_game *game)
 {
@@ -21,21 +32,23 @@ int	check_dim(t_game *game)
 
 int	check_border(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = -1;
-	while ( ++i < game->map->height)
+	while (++i < game->map->height)
 	{
-		if (game->map->maps[i][0] != '1' || game->map->maps[i][game->map->width - 1] != '1')
+		if (game->map->maps[i][0] != '1' ||
+			game->map->maps[i][game->map->width - 1] != '1')
 		{
 			ft_printf("Error on column\n");
 			return (0);
 		}
 	}
 	i = -1;
-	while ( ++i < game->map->width)
+	while (++i < game->map->width)
 	{
-		if (game->map->maps[0][i] != '1' || game->map->maps[game->map->height - 1][i] != '1')
+		if (game->map->maps[0][i] != '1' ||
+			game->map->maps[game->map->height - 1][i] != '1')
 		{
 			ft_printf("Error on line\n");
 			return (0);
@@ -44,14 +57,13 @@ int	check_border(t_game *game)
 	return (1);
 }
 
-int check_info(t_game *game)
+int	check_info(t_game *game)
 {
 	int	i;
 	int	j;
 
 	if (!init_game(game))
 		return (0);
-
 	i = -1;
 	while (++i < game->map->height)
 	{
@@ -70,6 +82,7 @@ int check_info(t_game *game)
 		return (0);
 	return (1);
 }
+
 int	check_chars(t_game *game)
 {
 	int	x;
@@ -96,10 +109,13 @@ int	check_chars(t_game *game)
 	}
 	return (1);
 }
+
 void	check_map(t_game *game)
 {
-	if ( !init_map(game) || !check_dim(game) || !check_border(game) || !check_path(game) || !check_info(game) || !check_chars(game))
-	{	
+	if (!init_map(game) || !check_dim(game)
+		|| !check_border(game) || !check_path(game)
+		|| !check_info(game) || !check_chars(game))
+	{
 		ft_printf("OPS! La tua mappa non ci piace :c\n");
 		ft_exit(game);
 	}

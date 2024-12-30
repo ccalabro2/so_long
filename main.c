@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/30 16:49:25 by ccalabro          #+#    #+#             */
+/*   Updated: 2024/12/30 17:33:17 by ccalabro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 #include "mlx/mlx.h"
 
@@ -13,16 +25,17 @@ int	main(int argc, char **argv)
 
 	if (argc != 2 || ft_endcmp(argv[1], ".ber"))
 		return (ft_printf("Invalid arguments! :c\n"), 1);
-	
 	game = malloc(sizeof(t_game));
 	if (!game)
 		return (1);
 	game->file_path = argv[1];
-	check_map(game);  
+	check_map(game);
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
 		return (1);
-	game->mlx_win = mlx_new_window(game->mlx_ptr, game->map->width * 80, game->map->height * 80, "REPARTO ORTOFRUTTICULO");
+	game->mlx_win = mlx_new_window(game->mlx_ptr,
+			game->map->width * 80, game->map->height * 80,
+			"REPARTO ORTOFRUTTICULO");
 	if (!game->mlx_win)
 		mlx_destroy_window(game->mlx_ptr, game->mlx_win);
 	set_images(game);
@@ -30,9 +43,6 @@ int	main(int argc, char **argv)
 	mlx_hook(game->mlx_win, 2, 1L << 0, key_hook, game);
 	mlx_hook(game->mlx_win, 17, 0, exit_hook, game);
 	mlx_loop(game->mlx_ptr);
-	
 	ft_exit(game);
-
 	return (0);
 }
-

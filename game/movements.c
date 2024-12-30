@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   movements.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/30 16:47:34 by ccalabro          #+#    #+#             */
+/*   Updated: 2024/12/30 17:10:07 by ccalabro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
 
 void	move_player(t_game *game, int new_x, int new_y)
@@ -17,9 +29,8 @@ void	move_player(t_game *game, int new_x, int new_y)
 		game->x = new_x;
 		game->y = new_y;
 		game->map->maps[new_y][new_x] = 'P';
-
 		game->steps++;
-        ft_printf("Passetti: %d\n", game->steps); 
+		ft_printf("Passetti: %d\n", game->steps);
 	}
 }
 
