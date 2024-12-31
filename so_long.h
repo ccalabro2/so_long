@@ -6,7 +6,7 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:49:41 by ccalabro          #+#    #+#             */
-/*   Updated: 2024/12/30 17:37:54 by ccalabro         ###   ########.fr       */
+/*   Updated: 2024/12/31 01:16:12 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ void	move_up(t_game *game);
 void	move_down(t_game *game);
 void	move_left(t_game *game);
 void	move_right(t_game *game);
-
+void	player_position(t_game *game);
 #endif

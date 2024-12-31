@@ -6,7 +6,7 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:47:22 by ccalabro          #+#    #+#             */
-/*   Updated: 2024/12/30 17:46:41 by ccalabro         ###   ########.fr       */
+/*   Updated: 2024/12/31 01:17:00 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ void	ft_exit(t_game *game)
 	if (game->map)
 	{
 		if (game->map->maps)
-			free_matrix(game->map->maps, game->map->height);
-		free(game->map);
+			free_matrix(game->map->maps, game->map->height); // AAA prima era height - 1
+		//free(game->map);
 	}
 	if (game->mapcopy)
-		free_matrix(game->mapcopy, game->map->height - 1);
+		free_matrix(game->mapcopy, game->map->height);
 	free(game);
 	exit(0);
 }

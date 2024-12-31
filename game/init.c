@@ -6,7 +6,7 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 16:47:27 by ccalabro          #+#    #+#             */
-/*   Updated: 2024/12/30 17:08:17 by ccalabro         ###   ########.fr       */
+/*   Updated: 2024/12/31 01:17:21 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	load_map_data(t_game *game, int fd)
 	return (1);
 }
 
-int	init_map(t_igame *game)
+int	init_map(t_game *game)
 {
 	int	fd;
 

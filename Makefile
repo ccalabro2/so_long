@@ -2,8 +2,8 @@ NAME	= so_long
 
 CC      = gcc
 
-CFLAGS  = -Wall -Wextra -Werror -g
-LINKS = -Lmlx -lmlx -lGL -lX11 -lXext 
+CFLAGS  = -Wall -Wextra -Werror #-g
+LINKS = -Lmlx -lmlx -lGL -lX11 -lXext
 
 SRCS	= $(wildcard game/*.c) $(wildcard utils/*.c) main.c
 LIB	=	mlx/
@@ -13,7 +13,7 @@ OBJS    = $(SRCS:.c=.o)
 $(NAME): $(OBJS)
 	make -C $(LIB)
 	$(CC) $(CFLAGS) $(OBJS) $(LINKS) -o $(NAME)
-	
+
 all: $(NAME)
 	make -C $(LIB)
 
